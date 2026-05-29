@@ -812,8 +812,8 @@
   color: var(--accent);
 }
 .markdown-body pre {
-  background: #050507;
-  border: 1px solid var(--border);
+  background: #1a1a2e;
+  border: 1px solid rgba(80, 80, 200, 0.18);
   border-radius: var(--r-md);
   padding: 16px 18px;
   overflow-x: auto;
@@ -821,7 +821,7 @@
   font-size: 13px;
   line-height: 1.6;
 }
-.markdown-body pre code { background: transparent; border: none; padding: 0; color: var(--text-1); font-size: inherit; }
+.markdown-body pre code { background: transparent; border: none; padding: 0; color: #c9d1d9; font-size: inherit; }
 .markdown-body blockquote {
   border-left: 3px solid var(--accent);
   background: var(--bg-2);
