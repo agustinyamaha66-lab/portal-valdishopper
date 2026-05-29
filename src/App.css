@@ -1,32 +1,30 @@
 /* ==================================================================
-   App.css — Estilos del shell (nav + hero)
+   App.css — Shell: TopNav navy + Header band navy + Hero + Links
    ================================================================== */
 
-/* ----------------------- TOP NAV ----------------------- */
+/* ----------------------- TOP NAV (integrado en el band, sin barra) ----------------------- */
 .topnav {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  background: rgba(242, 242, 250, 0.82);
-  border-bottom: 1px solid var(--border);
+  position: relative;
+  background: transparent;
+  border-bottom: none;
 }
 .topnav-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  height: 60px;
+  justify-content: flex-end;
+  height: 54px;
 }
 .brand {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 .brand-logo {
-  height: 36px;
+  height: 34px;
   width: auto;
   object-fit: contain;
-  border-radius: 6px;
+  border-radius: 7px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
 }
 .topnav-links {
   display: flex;
@@ -36,53 +34,58 @@
 .topnav-link {
   font-size: 13.5px;
   font-weight: 500;
-  color: var(--text-2);
-  padding: 7px 12px;
+  color: var(--on-navy-dim);
+  padding: 8px 14px;
   border-radius: var(--r-md);
   transition: color .15s, background .15s;
 }
-.topnav-link:hover { color: var(--text); background: var(--bg-2); }
-.topnav-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 12px;
-  border-radius: var(--r-md);
-  background: var(--text);
-  color: var(--bg);
-  font-size: 13px;
-  font-weight: 600;
-  border: none;
-  transition: transform .15s, background .15s;
-  text-decoration: none;
-}
-.topnav-cta:hover { background: var(--accent-strong); transform: translateY(-1px); }
+.topnav-link:hover { color: var(--on-navy); background: rgba(255, 255, 255, 0.08); }
 
-/* ----------------------- HERO ----------------------- */
+/* ----------------------- HEADER BAND (navy) ----------------------- */
+.header-band {
+  position: relative;
+  background:
+    radial-gradient(ellipse 80% 120% at 85% -10%, rgba(214, 66, 148, 0.32), transparent 55%),
+    radial-gradient(ellipse 60% 100% at 0% 110%, rgba(192, 24, 119, 0.18), transparent 55%),
+    linear-gradient(180deg, var(--navy) 0%, var(--navy-1) 100%);
+  overflow: hidden;
+}
+.header-band::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(214, 66, 148, 0.5), transparent);
+}
+
+/* ----------------------- HERO (sobre navy) ----------------------- */
 .hero {
-  padding: clamp(28px, 4vw, 48px) 0 clamp(20px, 3vw, 32px);
+  padding: clamp(12px, 2vw, 24px) 0 clamp(24px, 3.5vw, 44px);
   display: grid;
-  gap: 16px;
-  max-width: 760px;
+  gap: 14px;
+  max-width: 780px;
 }
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   width: fit-content;
-  padding: 5px 12px 5px 8px;
-  background: var(--bg-2);
-  border: 1px solid var(--border);
+  padding: 6px 14px 6px 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--on-navy-border);
   border-radius: var(--r-pill);
   font-size: 12.5px;
   font-weight: 500;
-  color: var(--text-2);
+  color: var(--on-navy-dim);
+  backdrop-filter: blur(6px);
 }
 .status-dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--success);
+  background: #34d399;
   position: relative;
   display: inline-block;
 }
@@ -91,8 +94,8 @@
   position: absolute;
   inset: -3px;
   border-radius: 50%;
-  background: var(--success);
-  opacity: 0.3;
+  background: #34d399;
+  opacity: 0.35;
   animation: pulse 2s ease-out infinite;
 }
 @keyframes pulse {
@@ -101,22 +104,38 @@
 }
 .hero-title {
   margin: 0;
-  font-size: clamp(36px, 5.5vw, 56px);
+  font-size: clamp(38px, 6vw, 60px);
   font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.025em;
-  color: var(--text);
+  line-height: 1.04;
+  letter-spacing: -0.028em;
+  color: var(--on-navy);
+  width: fit-content;
+  transform-origin: left center;
+  animation: heartbeat 2.4s ease-in-out infinite;
+  will-change: transform;
 }
 .hero-title .accent {
-  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  background: linear-gradient(120deg, var(--magenta-light), var(--magenta) 55%, var(--magenta-deep));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
+/* Latido tipo corazón: doble pulso + descanso */
+@keyframes heartbeat {
+  0%   { transform: scale(1); }
+  14%  { transform: scale(1.022); }
+  28%  { transform: scale(1); }
+  42%  { transform: scale(1.022); }
+  70%  { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-title { animation: none; }
+}
 .hero-sub {
   margin: 0;
-  font-size: clamp(15px, 1.6vw, 18px);
-  color: var(--text-2);
+  font-size: clamp(15px, 1.7vw, 19px);
+  color: var(--on-navy-dim);
   line-height: 1.6;
   max-width: 580px;
 }
@@ -124,38 +143,41 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 4px;
+  margin-top: 8px;
 }
 .hero-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 9px 16px;
-  background: var(--bg-2);
-  border: 1px solid var(--border);
+  padding: 11px 20px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--on-navy-border);
   border-radius: var(--r-md);
-  color: var(--text-1);
-  font-size: 13.5px;
-  font-weight: 500;
+  color: var(--on-navy);
+  font-size: 14px;
+  font-weight: 600;
   transition: all .18s;
   text-decoration: none;
 }
 .hero-link:hover {
-  background: var(--bg-3);
-  border-color: var(--border-strong);
+  background: rgba(255, 255, 255, 0.12);
   transform: translateY(-1px);
 }
 .hero-link.primary-link {
-  background: var(--text);
-  color: var(--bg);
+  background: linear-gradient(120deg, var(--magenta), var(--magenta-deep));
+  color: #fff;
   border-color: transparent;
+  box-shadow: var(--shadow-magenta);
 }
-.hero-link.primary-link:hover { background: var(--accent-strong); }
+.hero-link.primary-link:hover {
+  filter: brightness(1.06);
+  transform: translateY(-2px);
+}
 .hero-link svg { width: 16px; height: 16px; }
 
 /* ----------------------- LINKS SECTION ----------------------- */
 .links-section {
-  padding: clamp(32px, 5vw, 56px) 0 clamp(24px, 4vw, 48px);
+  padding: clamp(32px, 5vw, 56px) 0 clamp(40px, 6vw, 72px);
   border-top: 1px solid var(--border);
   margin-top: clamp(24px, 4vw, 48px);
 }
@@ -182,19 +204,32 @@
   flex-direction: column;
   gap: 8px;
   padding: 18px;
-  background: var(--bg-2);
+  background: var(--bg-1);
   border: 1px solid var(--border);
   border-radius: var(--r-lg);
   text-decoration: none;
   color: var(--text);
   transition: border-color .18s, transform .18s, box-shadow .18s;
   overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.link-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--magenta), var(--magenta-deep));
+  opacity: 0;
+  transition: opacity .18s;
 }
 .link-card:hover {
   border-color: var(--border-strong);
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+  box-shadow: var(--shadow-lg);
 }
+.link-card:hover::before { opacity: 1; }
 .link-card-header {
   display: flex;
   align-items: center;
@@ -203,7 +238,7 @@
 .link-icon {
   display: flex;
   align-items: center;
-  color: var(--text-2);
+  color: var(--accent);
 }
 .link-badge {
   font-size: 11px;
@@ -229,12 +264,12 @@
 .link-card-arrow {
   display: flex;
   align-items: center;
-  color: var(--text-3, var(--text-2));
+  color: var(--text-3);
   margin-top: 4px;
   opacity: 0.5;
-  transition: opacity .18s;
+  transition: opacity .18s, color .18s;
 }
-.link-card:hover .link-card-arrow { opacity: 1; }
+.link-card:hover .link-card-arrow { opacity: 1; color: var(--accent); }
 
 /* ----------------------- RESPONSIVE ----------------------- */
 @media (max-width: 720px) {

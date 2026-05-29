@@ -5,15 +5,15 @@ const R = 72;
 const C = 2 * Math.PI * R;
 
 const SERVICE_COLORS = {
-  'Cloud SQL':         '#5b62f0',
+  'Cloud SQL':         '#d64294',
   'Redis':             '#ea4335',
   'Networking':        '#fbbc04',
   'Gemini API':        '#34a853',
   'Artifact Registry': '#ff6d00',
-  'Cloud Scheduler':   '#8b5cf6',
+  'Cloud Scheduler':   '#0b1c49',
   'Otros':             '#94a3b8',
 };
-const FALLBACK = ['#5b62f0', '#ea4335', '#fbbc04', '#34a853', '#ff6d00', '#8b5cf6', '#94a3b8', '#06b6d4'];
+const FALLBACK = ['#d64294', '#c01877', '#0b1c49', '#34a853', '#ff6d00', '#1e3a82', '#94a3b8', '#06b6d4'];
 
 export default function GcpDonutChart({ breakdown }) {
   const total = breakdown.reduce((s, b) => s + b.current, 0);

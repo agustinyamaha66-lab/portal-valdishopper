@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import ProjectList from './components/ProjectList.jsx';
 import { Icon } from './components/Icons.jsx';
-import valdishopperLogo from './assets/valdishopper-logo.jpeg';
 import './App.css';
 
 const imageModules = import.meta.glob('./assets/*.{png,jpg,jpeg,webp,gif}', { eager: true });
@@ -68,9 +67,6 @@ function TopNav() {
   return (
     <nav className="topnav">
       <div className="page topnav-inner">
-        <a className="brand" href="#">
-          <img src={valdishopperLogo} alt="Valdishopper" className="brand-logo" />
-        </a>
         <div className="topnav-links">
           <a className="topnav-link" href="#proyectos">Proyectos</a>
           <a className="topnav-link" href="#links">Links</a>
@@ -84,12 +80,8 @@ function TopNav() {
 function Hero() {
   return (
     <header className="hero fade-in">
-      <div className="hero-eyebrow">
-        <span className="status-dot" />
-        Disponible 
-      </div>
       <h1 className="hero-title">
-        Proyectos  <span className="accent">consolidados</span>
+        Proyectos <span className="accent">consolidados</span>
       </h1>
       <p className="hero-sub">
         Proyectos Valdishopper
@@ -228,9 +220,13 @@ export default function App() {
 
   return (
     <>
-      <TopNav />
+      <div className="header-band">
+        <TopNav />
+        <div className="page">
+          <Hero />
+        </div>
+      </div>
       <main className="page">
-        <Hero />
         <ProjectList
           projects={projects}
           loading={loading}
