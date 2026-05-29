@@ -44,10 +44,14 @@
 /* ----------------------- HEADER BAND (navy) ----------------------- */
 .header-band {
   position: relative;
-  background:
-    radial-gradient(ellipse 80% 120% at 85% -10%, rgba(214, 66, 148, 0.32), transparent 55%),
-    radial-gradient(ellipse 60% 100% at 0% 110%, rgba(192, 24, 119, 0.18), transparent 55%),
-    linear-gradient(180deg, var(--navy) 0%, var(--navy-1) 100%);
+  background-color: var(--navy);
+  background-image:
+    radial-gradient(ellipse 80% 120% at 85% -10%, rgba(214, 66, 148, 0.30), transparent 55%),
+    linear-gradient(180deg, rgba(11, 28, 73, 0.58) 0%, rgba(11, 28, 73, 0.82) 55%, var(--navy) 100%),
+    url('/FONDOCyber2.png');
+  background-size: cover, cover, cover;
+  background-position: center, center, center top;
+  background-repeat: no-repeat;
   overflow: hidden;
 }
 .header-band::after {
